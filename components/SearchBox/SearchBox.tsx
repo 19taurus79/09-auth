@@ -1,10 +1,10 @@
-import css from './SearchBox.module.css';
+import css from "./SearchBox.module.css";
 interface SearchBoxProps {
   value: string;
   onSearch: (value: string) => void;
   setPage: (page: number) => void;
 }
-export default function SearchBar({
+export default function SearchBox({
   value,
   onSearch,
   setPage,

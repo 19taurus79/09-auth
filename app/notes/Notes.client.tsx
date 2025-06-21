@@ -8,8 +8,8 @@ import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteModal from "@/components/NoteModal/NoteModal";
-import SearchBar from "@/components/SearchBox/SearchBox";
 import css from "./Note.client.module.css";
+import SearchBox from "@/components/SearchBox/SearchBox";
 export default function NotesClient() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function NotesClient() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBar
+        <SearchBox
           value={searchQuery}
           onSearch={setSearchQuery}
           setPage={setCurrentPage}
