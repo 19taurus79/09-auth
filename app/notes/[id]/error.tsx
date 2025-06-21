@@ -1,5 +1,5 @@
 "use client";
-const Error = (error: Error) => {
+const Error = ({ error }: { error: Error }) => {
   return <p>Could not fetch note details. {error.message}</p>;
 };
 
