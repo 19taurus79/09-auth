@@ -2,16 +2,16 @@ import css from "./SearchBox.module.css";
 interface SearchBoxProps {
   value: string;
   onSearch: (value: string) => void;
-  setPage: (page: number) => void;
+  // setPage: (page: number) => void;
 }
 export default function SearchBox({
   value,
   onSearch,
-  setPage,
-}: SearchBoxProps) {
+}: // setPage,
+SearchBoxProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onSearch(event.target.value);
-    setPage(1);
+    // setPage(1);
   };
   return (
     <input

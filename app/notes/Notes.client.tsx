@@ -27,7 +27,10 @@ export default function NotesClient({ initialData }: Props) {
     initialData:
       currentPage === 1 && debouncedQuery === "" ? initialData : undefined,
   });
-
+  const handleSearch = (searchQuery: string) => {
+    setSearchQuery(searchQuery);
+    setCurrentPage(1);
+  };
   const notes = data?.notes;
   const totalPages = data?.totalPages;
   const togleModal = () => setIsModalOpen(!isModalOpen);
@@ -37,8 +40,8 @@ export default function NotesClient({ initialData }: Props) {
       <header className={css.toolbar}>
         <SearchBox
           value={searchQuery}
-          onSearch={setSearchQuery}
-          setPage={setCurrentPage}
+          onSearch={handleSearch}
+          // setPage={setCurrentPage}
         />
         {totalPages && totalPages > 1 && (
           <Pagination
