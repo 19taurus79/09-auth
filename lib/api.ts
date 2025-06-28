@@ -3,8 +3,9 @@ import type { Note } from "../types/note";
 const TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 interface FetchNotesParams {
-  search: string;
+  search?: string;
   page: number;
+  tag?: string | "";
 }
 interface CreateNoteParams {
   title: string;
@@ -18,11 +19,13 @@ interface FetchNotesResponse {
 export const fetchNotes = async ({
   search,
   page,
+  tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> => {
   const params = {
     page,
     perPage: 12,
     ...(search && { search }),
+    ...(tag && { tag }),
   };
 
   const res = await axios.get<FetchNotesResponse>("/notes", {
