@@ -6,9 +6,10 @@ import { useDebounce } from "use-debounce";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
 import Pagination from "@/components/Pagination/Pagination";
-import NoteModal from "@/components/NoteModal/NoteModal";
+import Modal from "@/components/Modal/Modal";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Note.client.module.css";
+import NoteForm from "@/components/NoteForm/NoteForm";
 
 type Props = {
   initialData: Awaited<ReturnType<typeof fetchNotes>>;
@@ -20,7 +21,7 @@ export default function NotesClient({ initialData, tag }: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
-  console.log("initialData", initialData);
+  // console.log("initialData", initialData);
   const { data } = useQuery({
     queryKey: ["notes", currentPage, debouncedQuery, tag],
     queryFn: () =>
@@ -40,7 +41,7 @@ export default function NotesClient({ initialData, tag }: Props) {
   const notes = data?.notes;
   const totalPages = data?.totalPages;
   const togleModal = () => setIsModalOpen(!isModalOpen);
-
+  // console.log(togleModal);
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -61,7 +62,11 @@ export default function NotesClient({ initialData, tag }: Props) {
         </button>
       </header>
       {notes && <NoteList notes={notes} />}
-      {isModalOpen && <NoteModal onClose={togleModal} />}
+      {isModalOpen && (
+        <Modal onClose={togleModal}>
+          <NoteForm onClose={togleModal} />
+        </Modal>
+      )}
     </div>
   );
 }

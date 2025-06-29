@@ -10,7 +10,7 @@ export default async function NotesPage({ params }: Params) {
     search: "",
     ...(tag && tag !== "All" && { tag }),
   });
-  console.log(slug);
-  console.log(initialData);
+  // console.log(slug);
+  // console.log(initialData);
   return <NotesClient initialData={initialData} tag={tag} />;
 }
