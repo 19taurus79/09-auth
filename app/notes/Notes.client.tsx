@@ -9,6 +9,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import NoteModal from "@/components/NoteModal/NoteModal";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Note.client.module.css";
+import NoteForm from "@/components/NoteForm/NoteForm";
 
 type Props = {
   initialData: Awaited<ReturnType<typeof fetchNotes>>;
@@ -55,7 +56,11 @@ export default function NotesClient({ initialData }: Props) {
         </button>
       </header>
       {notes && <NoteList notes={notes} />}
-      {isModalOpen && <NoteModal onClose={togleModal} />}
+      {isModalOpen && (
+        <NoteModal onClose={togleModal}>
+          <NoteForm onClose={togleModal} />
+        </NoteModal>
+      )}
     </div>
   );
 }
