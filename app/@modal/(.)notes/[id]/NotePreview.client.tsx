@@ -1,11 +1,11 @@
 "use client";
-import css from "./NotesDetail.module.css";
+import css from "./NotePreview.client.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { fetchNoteById } from "@/lib/api";
 import Modal from "@/components/Modal/Modal";
 import { useState } from "react";
-const NoteDetailClient = () => {
+const NotePreview = () => {
   const { id } = useParams<{ id: string }>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const {
@@ -41,4 +41,4 @@ const NoteDetailClient = () => {
   );
 };
 
-export default NoteDetailClient;
+export default NotePreview;
