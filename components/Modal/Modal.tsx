@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 // import NoteForm from "../NoteForm/NoteForm";
 import css from "./Modal.module.css";

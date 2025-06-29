@@ -21,7 +21,7 @@ export default function NotesClient({ initialData, tag }: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
-  console.log("initialData", initialData);
+  // console.log("initialData", initialData);
   const { data } = useQuery({
     queryKey: ["notes", currentPage, debouncedQuery, tag],
     queryFn: () =>
@@ -41,7 +41,7 @@ export default function NotesClient({ initialData, tag }: Props) {
   const notes = data?.notes;
   const totalPages = data?.totalPages;
   const togleModal = () => setIsModalOpen(!isModalOpen);
-
+  // console.log(togleModal);
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
