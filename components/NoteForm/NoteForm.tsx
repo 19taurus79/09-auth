@@ -27,7 +27,7 @@ const initialValues: CreateNoteValues = {
 interface NoteFormProps {
   onClose: () => void;
 }
-export default function NoteForm({ onClose }: NoteFormProps) {
+export default function Forma({ onClose }: NoteFormProps) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: createNote,

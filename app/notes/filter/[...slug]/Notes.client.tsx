@@ -6,10 +6,11 @@ import { useDebounce } from "use-debounce";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
+// import Modal from "@/components/Modal/Modal";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Note.client.module.css";
-import NoteForm from "@/components/NoteForm/NoteForm";
+// import NoteForm from "@/components/NoteForm/NoteForm";
+import { useRouter } from "next/navigation";
 
 type Props = {
   initialData: Awaited<ReturnType<typeof fetchNotes>>;
@@ -18,7 +19,7 @@ type Props = {
 
 export default function NotesClient({ initialData, tag }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
   // console.log("initialData", initialData);
@@ -40,8 +41,13 @@ export default function NotesClient({ initialData, tag }: Props) {
   };
   const notes = data?.notes;
   const totalPages = data?.totalPages;
-  const togleModal = () => setIsModalOpen(!isModalOpen);
+  // const togleModal = () => setIsModalOpen(!isModalOpen);
   // console.log(togleModal);
+  const router = useRouter();
+  const handleClick = () => {
+    // togleModal();
+    router.push("/notes/action/create");
+  };
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -57,16 +63,16 @@ export default function NotesClient({ initialData, tag }: Props) {
             onPageChange={setCurrentPage}
           />
         )}
-        <button className={css.button} onClick={togleModal}>
+        <button className={css.button} onClick={handleClick}>
           Create note +
         </button>
       </header>
       {notes && <NoteList notes={notes} />}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal onClose={togleModal}>
           <NoteForm onClose={togleModal} />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 }
