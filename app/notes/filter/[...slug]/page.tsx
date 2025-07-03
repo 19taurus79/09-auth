@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Params) {
     openGraph: {
       title: `Notes Hub | ${tag === "All" ? "All Notes" : tag}`,
       description: `Browse notes tagged with "${tag}" in the Notes App.`,
-      url: `https://yourdomain.com/notes/filter/${slug.join("/")}`,
+      url: `https://08-zustand-nu.vercel.app/notes/filter/${slug.join("/")}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
