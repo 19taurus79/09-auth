@@ -1,4 +1,8 @@
 import css from "./page.module.css";
+export const metadata = {
+  title: "Notes App | Home",
+  description: "Create, manage, and organize your notes easily with Notes App.",
+};
 export default function Home() {
   return (
     <main>
