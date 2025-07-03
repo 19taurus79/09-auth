@@ -15,8 +15,22 @@ export async function generateMetadata({ params }: Props) {
   const note = await fetchNoteById(noteId);
 
   return {
-    title: `Notes App | ${note.title}`,
+    title: `Notes Hub | ${note.title}`,
     description: note.content,
+    openGraph: {
+      title: `Notes Hub | ${note.title}`,
+      description: note.content,
+      url: `https://yourdomain.com/notes/${id}`,
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: note.title,
+        },
+      ],
+      type: "article",
+    },
   };
 }
 const NoteDetails = async ({ params }: Props) => {
