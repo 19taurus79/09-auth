@@ -1,7 +1,8 @@
-import NoteForm from "@/components/NoteForm/NoteForm copy";
+import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./CreateNote.module.css";
+import { Metadata } from "next";
 // import { useState } from "react";
-export const metadata = {
+export const metadata: Metadata = {
   title: "Notes Hub | Create Note",
   description: "Create a new note in Notes App.",
   openGraph: {

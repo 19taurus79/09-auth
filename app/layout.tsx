@@ -24,6 +24,21 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Note Hub",
   description: "Create, manage, and organize your notes easily with Notes App.",
+  openGraph: {
+    title: "Notes Hub",
+    description:
+      "Create, manage, and organize your notes easily with Notes App.",
+    url: `https://08-zustand-nu.vercel.app`,
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Create note in Notes Hub",
+      },
+    ],
+    type: "article",
+  },
 };
 
 export default function RootLayout({
