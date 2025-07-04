@@ -6,6 +6,7 @@ import css from "./NoteForm.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { useNoteStore } from "@/lib/store/noteStore";
 // const FormSchema = Yup.object().shape({
 //   title: Yup.string()
 //     .required("Title is required")
@@ -31,11 +32,14 @@ interface CreateNoteValues {
 // }
 export default function NoteForm() {
   const route = useRouter();
+  const { draft, setDraft, clearDraft } = useNoteStore();
   const queryClient = useQueryClient();
+  console.log(draft);
   const mutation = useMutation({
     mutationFn: createNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
+      clearDraft();
       route.push("/notes/filter/All");
       // onClose();
     },
@@ -57,7 +61,22 @@ export default function NoteForm() {
     };
     handleSubmit(values);
   };
-  const handleCancel = () => route.back();
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setDraft({
+      ...draft,
+      [name]: value,
+    });
+    console.log("Draft updated:", { ...draft, [name]: value });
+  };
+  const handleCancel = () => {
+    route.back();
+    clearDraft();
+  };
   return (
     <form action={handle} className={css.form}>
       <div className={css.formGroup}>
@@ -68,6 +87,8 @@ export default function NoteForm() {
           name="title"
           className={css.input}
           required
+          onChange={handleChange}
+          defaultValue={draft.title}
         />
         <span className={css.error} />
       </div>
@@ -79,13 +100,21 @@ export default function NoteForm() {
           name="content"
           rows={8}
           className={css.textarea}
+          onChange={handleChange}
+          defaultValue={draft.content}
         />
         <span className={css.error} />
       </div>
 
       <div className={css.formGroup}>
         <label htmlFor="tag">Tag</label>
-        <select id="tag" name="tag" className={css.select}>
+        <select
+          id="tag"
+          name="tag"
+          className={css.select}
+          onChange={handleChange}
+          defaultValue={draft.tag}
+        >
           <option value="Todo">Todo</option>
           <option value="Work">Work</option>
           <option value="Personal">Personal</option>
