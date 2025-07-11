@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
 import NoteList from "@/components/NoteList/NoteList";
-import { fetchNotes } from "@/lib/api";
+import { getNotes } from "@/lib/clientApi";
 import Pagination from "@/components/Pagination/Pagination";
 // import Modal from "@/components/Modal/Modal";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -13,7 +13,7 @@ import css from "./Note.client.module.css";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  initialData: Awaited<ReturnType<typeof fetchNotes>>;
+  initialData: Awaited<ReturnType<typeof getNotes>>;
   tag: string;
 };
 
@@ -26,7 +26,7 @@ export default function NotesClient({ initialData, tag }: Props) {
   const { data } = useQuery({
     queryKey: ["notes", currentPage, debouncedQuery, tag],
     queryFn: () =>
-      fetchNotes({
+      getNotes({
         search: debouncedQuery,
         page: currentPage,
         ...(tag !== "All" && { tag }),
