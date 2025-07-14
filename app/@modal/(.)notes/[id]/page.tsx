@@ -1,11 +1,11 @@
-import { fetchNoteById } from "@/lib/api";
-
 import {
   QueryClient,
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query";
 import NotePreview from "./NotePreview.client";
+import { getServerNoteById } from "@/lib/serverApi";
+
 // import Modal from "@/components/Modal/Modal";
 
 type Props = {
@@ -14,12 +14,12 @@ type Props = {
 
 const NoteDetails = async ({ params }: Props) => {
   const { id } = await params;
-  const noteId = Number(id); // Перетворення id у число
+  const noteId = id; // Перетворення id у число
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["note", noteId],
-    queryFn: () => fetchNoteById(noteId),
+    queryFn: () => getServerNoteById(noteId),
   });
 
   return (

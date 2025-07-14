@@ -2,9 +2,9 @@
 import css from "./NotePreview.client.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
-import { fetchNoteById } from "@/lib/api";
 import Modal from "@/components/Modal/Modal";
 import { useState } from "react";
+import { getNoteById } from "@/lib/clientApi";
 const NotePreview = () => {
   const { id } = useParams<{ id: string }>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
@@ -14,7 +14,7 @@ const NotePreview = () => {
     error,
   } = useQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(Number(id)),
+    queryFn: () => getNoteById(id),
     refetchOnMount: false,
   });
   const route = useRouter();

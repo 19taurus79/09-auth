@@ -4,9 +4,11 @@ import css from "./NoteForm.module.css";
 // import * as Yup from "yup";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
+
 import { useRouter } from "next/navigation";
 import { useNoteStore } from "@/lib/store/noteStore";
+import { createNote } from "@/lib/clientApi";
+
 // const FormSchema = Yup.object().shape({
 //   title: Yup.string()
 //     .required("Title is required")
