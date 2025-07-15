@@ -19,6 +19,7 @@ type Props = {
 
 export default function NotesClient({ initialData, tag }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
