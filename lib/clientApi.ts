@@ -88,7 +88,7 @@ export const getNotes = async ({
   return res.data;
 };
 
-export const getNoteById = async (id: number): Promise<Note> => {
+export const getNoteById = async (id: string): Promise<Note> => {
   const res = await nextServer<Note>(`/notes/${id}`);
   return res.data;
 };
@@ -106,3 +106,11 @@ export const deleteNote = async (id: string): Promise<Note> => {
   const res = await nextServer.delete<Note>(`/notes/${id}`, {});
   return res.data;
 };
+// type CheckSessionRequest = {
+//   success: boolean;
+// };
+
+// export const checkSession = async () => {
+//   const res = await nextServer.get<CheckSessionRequest>("/auth/session");
+//   return res.data.success;
+// };

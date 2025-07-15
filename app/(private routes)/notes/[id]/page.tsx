@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api";
+import { getServerNoteById } from "@/lib/serverApi";
 import NoteDetailClient from "./NoteDetails.client";
 import {
   QueryClient,
@@ -12,8 +12,8 @@ type Props = {
 };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const noteId = Number(id); // Перетворення id у число
-  const note = await fetchNoteById(noteId);
+  const noteId = id; // Перетворення id у число
+  const note = await getServerNoteById(noteId);
 
   return {
     title: `Notes Hub | ${note.title}`,
@@ -36,12 +36,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 const NoteDetails = async ({ params }: Props) => {
   const { id } = await params;
-  const noteId = Number(id); // Перетворення id у число
+  const noteId = id; // Перетворення id у число
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["note", noteId],
-    queryFn: () => fetchNoteById(noteId),
+    queryFn: () => getServerNoteById(noteId),
   });
 
   return (

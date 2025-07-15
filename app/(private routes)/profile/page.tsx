@@ -1,7 +1,10 @@
+"use client";
 import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import Image from "next/image";
+import { useAuth } from "@/lib/store/authStore";
 export default function Profile() {
+  const { user } = useAuth();
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
@@ -21,8 +24,8 @@ export default function Profile() {
           />
         </div>
         <div className={css.profileInfo}>
-          <p>Username: your_username</p>
-          <p>Email: your_email@example.com</p>
+          <p>Username: {user?.username}</p>
+          <p>Email: {user?.email}</p>
         </div>
       </div>
     </main>
