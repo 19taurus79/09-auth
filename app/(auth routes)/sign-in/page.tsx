@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import css from "./SignInPage.module.css";
-import { login, LoginRequest } from "@/lib/clientApi";
+import { login, LoginRequest } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 export default function SignInPage() {
   const router = useRouter();

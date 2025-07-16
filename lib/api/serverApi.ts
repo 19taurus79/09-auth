@@ -1,11 +1,11 @@
 import { cookies } from "next/headers";
-import { nextServer } from "./api";
+import { nextServer } from "./api/api";
 import {
   GetNotesParams,
   GetNotesResponse,
   Note,
   ServerBoolResponse,
-} from "./clientApi";
+} from "./api/clientApi";
 
 export const getServerNotes = async ({
   search,

@@ -1,5 +1,5 @@
 "use client";
-import { register, RegisterRequest } from "@/lib/clientApi";
+import { register, RegisterRequest } from "@/lib/api/clientApi";
 import css from "./SignUpPage.module.css";
 import { useRouter } from "next/navigation";
 export default function SignInPage() {

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { User } from "../clientApi";
+import { User } from "../api/clientApi";
 export type AuthStoreType = {
   isAuthenticated: boolean;
   user: User | null;

@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useRouter } from "next/navigation";
 import { useNoteStore } from "@/lib/store/noteStore";
-import { createNote } from "@/lib/clientApi";
+import { createNote } from "@/lib/api/clientApi";
 
 // const FormSchema = Yup.object().shape({
 //   title: Yup.string()

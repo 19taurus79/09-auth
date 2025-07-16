@@ -3,7 +3,7 @@ import Image from "next/image";
 import css from "./EditProfilePage.module.css";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
-import { patchMe, User } from "@/lib/clientApi";
+import { patchMe, User } from "@/lib/api/clientApi";
 
 export default function EditProfile() {
   const { user } = useAuth();

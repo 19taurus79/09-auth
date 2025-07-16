@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import Modal from "@/components/Modal/Modal";
 import { useState } from "react";
-import { getNoteById } from "@/lib/clientApi";
+import { getNoteById } from "@/lib/api/clientApi";
 const NotePreview = () => {
   const { id } = useParams<{ id: string }>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
