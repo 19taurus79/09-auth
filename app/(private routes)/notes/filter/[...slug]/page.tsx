@@ -1,7 +1,7 @@
 // import { getNotes } from "@/lib/clientApi";
 import NotesClient from "./Notes.client";
 import { Metadata } from "next";
-import { getServerNotes } from "@/lib/serverApi";
+import { getServerNotes } from "@/lib/api/serverApi";
 type Params = { params: Promise<{ slug: string[] }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
