@@ -1,6 +1,11 @@
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
-import { GetNotesParams, GetNotesResponse, Note } from "./clientApi";
+import {
+  GetNotesParams,
+  GetNotesResponse,
+  Note,
+  ServerBoolResponse,
+} from "./clientApi";
 
 export const getServerNotes = async ({
   search,
@@ -32,4 +37,12 @@ export const getServerNoteById = async (id: string): Promise<Note> => {
     },
   });
   return res.data;
+};
+
+export const checkServerSession = async () => {
+  const cookieData = await cookies();
+  const response = await nextServer<ServerBoolResponse>(`/auth/session`, {
+    headers: { Cookie: cookieData.toString() },
+  });
+  return response;
 };
