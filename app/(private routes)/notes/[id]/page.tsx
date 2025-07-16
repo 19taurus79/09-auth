@@ -1,4 +1,4 @@
-import { getServerNoteById } from "@/lib/serverApi";
+import { getServerNoteById } from "@/lib/api/serverApi";
 import NoteDetailClient from "./NoteDetails.client";
 import {
   QueryClient,

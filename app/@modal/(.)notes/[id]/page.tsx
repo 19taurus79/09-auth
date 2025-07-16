@@ -4,7 +4,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import NotePreview from "./NotePreview.client";
-import { getServerNoteById } from "@/lib/serverApi";
+import { getServerNoteById } from "@/lib/api/serverApi";
 
 // import Modal from "@/components/Modal/Modal";
 
