@@ -16,7 +16,7 @@ export default function Profile() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src="../../../public/file.svg"
+            src="/milyi-kot-v-studii.jpg"
             alt="User Avatar"
             width={120}
             height={120}

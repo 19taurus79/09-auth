@@ -3,28 +3,42 @@ import Image from "next/image";
 import css from "./EditProfilePage.module.css";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
+import { patchMe, User } from "@/lib/clientApi";
+
 export default function EditProfile() {
   const { user } = useAuth();
   const router = useRouter();
+  const { setUser } = useAuth();
+  const handleSubmit = async (formData: FormData) => {
+    const payload = Object.fromEntries(formData) as User;
+    console.log("payload", payload);
+    const res = await patchMe(payload);
+    console.log("res", res);
+    if (res) {
+      setUser(res);
+      router.push("/profile");
+    }
+  };
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
         <Image
-          src="../../../public/file.svg"
+          src="/milyi-kot-v-studii.jpg"
           alt="User Avatar"
           width={120}
           height={120}
           className={css.avatar}
         />
 
-        <form className={css.profileInfo}>
+        <form action={handleSubmit} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
             <input
               defaultValue={user?.username}
               id="username"
+              name="username"
               type="text"
               className={css.input}
             />
