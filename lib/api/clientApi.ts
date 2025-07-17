@@ -1,4 +1,6 @@
+import { Note } from "@/types/note";
 import { nextServer } from "./api";
+import { User } from "@/types/user";
 
 export type LoginRequest = {
   email: string;
@@ -8,11 +10,7 @@ export type RegisterRequest = {
   email: string;
   password: string;
 };
-export type User = {
-  username: string;
-  email: string;
-  avatar: string;
-};
+
 export type ServerBoolResponse = {
   success: boolean;
 };
@@ -27,15 +25,7 @@ export type GetNotesParams = {
   perPage?: number;
   sortBy?: string;
 };
-export type Note = {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-  tag: string;
-};
+
 export type GetNotesResponse = {
   notes: Note[];
   totalPages: number;

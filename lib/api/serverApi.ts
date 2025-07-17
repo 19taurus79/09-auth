@@ -3,9 +3,10 @@ import { nextServer } from "../api/api";
 import {
   GetNotesParams,
   GetNotesResponse,
-  Note,
   ServerBoolResponse,
 } from "../api/clientApi";
+import { Note } from "@/types/note";
+import { User } from "@/types/user";
 
 export const getServerNotes = async ({
   search,
@@ -45,4 +46,12 @@ export const checkServerSession = async () => {
     headers: { Cookie: cookieData.toString() },
   });
   return response;
+};
+
+export const getServerMe = async () => {
+  const cookieData = await cookies();
+  const { data } = await nextServer<User>(`/users/me`, {
+    headers: { Cookie: cookieData.toString() },
+  });
+  return data;
 };

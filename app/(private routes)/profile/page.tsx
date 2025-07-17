@@ -1,10 +1,12 @@
-"use client";
+// "use client";
 import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import Image from "next/image";
-import { useAuth } from "@/lib/store/authStore";
-export default function Profile() {
-  const { user } = useAuth();
+import { getServerMe } from "@/lib/api/serverApi";
+// import { useAuth } from "@/lib/store/authStore";
+export default async function Profile() {
+  // const { user } = useAuth();
+  const user = await getServerMe();
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>

@@ -1,14 +1,17 @@
 "use client";
 import { register, RegisterRequest } from "@/lib/api/clientApi";
+import { useAuth } from "@/lib/store/authStore";
 import css from "./SignUpPage.module.css";
 import { useRouter } from "next/navigation";
 export default function SignInPage() {
   const router = useRouter();
+  const { setUser } = useAuth();
   const handleRegister = async (formData: FormData) => {
     const payload = Object.fromEntries(formData) as RegisterRequest;
     const res = await register(payload);
+
     if (res) {
-      // setUser(res);
+      setUser(res);
       router.push("/profile");
     }
   };
