@@ -1,5 +1,6 @@
+import { User } from "@/types/user";
 import { create } from "zustand";
-import { User } from "../api/clientApi";
+
 export type AuthStoreType = {
   isAuthenticated: boolean;
   user: User | null;
