@@ -3,7 +3,28 @@ import Link from "next/link";
 import css from "./ProfilePage.module.css";
 import Image from "next/image";
 import { getServerMe } from "@/lib/api/serverApi";
+import { Metadata } from "next";
 // import { useAuth } from "@/lib/store/authStore";
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Profile Page",
+    description: "User profile page with personal information.",
+    openGraph: {
+      title: "Profile Page",
+      description: "User profile page with personal information.",
+      url: "https://08-zustand-nu.vercel.app/profile",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Profile Page",
+        },
+      ],
+      type: "profile",
+    },
+  };
+}
 export default async function Profile() {
   // const { user } = useAuth();
   const user = await getServerMe();
@@ -18,7 +39,7 @@ export default async function Profile() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src="/milyi-kot-v-studii.jpg"
+            src={user?.avatar}
             alt="User Avatar"
             width={120}
             height={120}
